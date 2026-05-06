@@ -1,69 +1,145 @@
-# 🐍 Snake Game using Pygame
+<div align="center">
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Python-Game-blue?style=for-the-badge&logo=python"/>
-  <img src="https://img.shields.io/badge/Pygame-Interactive-green?style=for-the-badge"/>
-  <img src="https://img.shields.io/badge/Winter%205.0-Project-orange?style=for-the-badge"/>
-</p>
+# 🚗 Ford Car Price Analysis & Prediction
 
-<p align="center">
-  🎮 A classic Snake Game built using <b>Python & Pygame</b> with smooth controls, score tracking, and real-time gameplay.
-</p>
+![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-F37626?style=for-the-badge&logo=jupyter&logoColor=white)
+![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-ML-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-Data-150458?style=for-the-badge&logo=pandas&logoColor=white)
+![Plotly](https://img.shields.io/badge/Plotly-Visualization-3F4F75?style=for-the-badge&logo=plotly&logoColor=white)
+![Kaggle](https://img.shields.io/badge/Kaggle-Dataset-20BEFF?style=for-the-badge&logo=kaggle&logoColor=white)
 
----
+**End-to-end exploratory data analysis and linear regression modelling on a real-world Ford used-car dataset — comparing One-Hot and Label Encoding strategies for price prediction.**
 
-## 🚀 Project Overview
-
-This project is a **modern implementation of the classic Snake Game**, developed using **Pygame**.  
-The player controls a snake that grows longer by eating food while avoiding collisions with walls and itself.
-
-It focuses on:
-- Game logic
-- Event handling
-- Real-time rendering
-- Clean & structured Python code
-
-Perfect for **beginners**, **game dev learners**, and **Winter 5.0 showcase**.
+</div>
 
 ---
 
-## 🎥 Live Gameplay Preview (Plays on GitHub)
+## 📌 Project Overview
 
-<p align="center">
-  <video src="assets/snake_game_demo.mp4" width="720" controls></video>
-</p>
-
-> 📌 *This video plays directly inside GitHub — no external platform needed.*
+This project performs a complete data science pipeline on the [Ford Car Price Prediction](https://www.kaggle.com/datasets/adhurimquku/ford-car-price-prediction) dataset from Kaggle. Starting from raw CSV data, the notebook covers structured EDA, feature engineering, categorical encoding (One-Hot vs Label), feature scaling, and regression modelling — culminating in a performance comparison between two encoding approaches using R² and Adjusted R².
 
 ---
 
 ## ✨ Features
 
-- 🐍 Smooth snake movement
-- 🍎 Random food generation
-- 📈 Live score tracking
-- 🚧 Collision detection (walls & self)
-- 🔁 Restart or quit option
-- 🎨 Clean UI with colors & fonts
+- **Exploratory Data Analysis (EDA)** — distribution plots, correlation heatmaps, and multi-dimensional scatter plots (including 3D price/mileage/year)
+- **Categorical Encoding Comparison** — side-by-side implementation of One-Hot Encoding (`pd.get_dummies`) and Label Encoding (`sklearn.LabelEncoder`) on model, transmission, and fuel type
+- **Feature Scaling** — StandardScaler applied to all numeric columns (year, mileage, tax, mpg, engineSize) to normalise feature magnitudes
+- **Linear Regression Modelling** — trained and evaluated separately for both encoding strategies
+- **Performance Metrics** — R² Score and Adjusted R² Score computed and compared across both models
+- **Rich Visualisations** — Seaborn boxplots, scatterplots, histograms, and interactive Plotly charts with dark themes
+
+---
+
+## 🗂️ Project Structure
+
+```
+ford-dataset-analysis/
+│
+├── ford-dataset-analysis.ipynb   # Main notebook
+├── README.md                     # Project documentation
+└── assets/                       # (Optional) saved plot images
+```
+
+---
+
+## 📊 Dataset
+
+| Attribute     | Details                                              |
+|---------------|------------------------------------------------------|
+| **Source**    | Kaggle — `adhurimquku/ford-car-price-prediction`     |
+| **File**      | `ford.csv`                                           |
+| **Features**  | model, year, transmission, mileage, fuelType, tax, mpg, engineSize |
+| **Target**    | `price` (GBP)                                        |
+
+---
+
+## 🔬 Analysis Pipeline
+
+```
+Raw Data
+   │
+   ├── 1. Data Inspection       →  .shape, .describe(), .info(), null checks
+   │
+   ├── 2. EDA                   →  Price distribution, correlation heatmap,
+   │                                box plots by year/engine/fuel/transmission,
+   │                                3D scatter (mileage × year × price)
+   │
+   ├── 3. Feature Engineering   →  price_bins (pd.cut), X/y split
+   │
+   ├── 4a. One-Hot Encoding     →  pd.get_dummies → StandardScaler → Linear Regression
+   │
+   ├── 4b. Label Encoding       →  LabelEncoder → StandardScaler → Linear Regression
+   │
+   └── 5. Evaluation            →  R² Score, Adjusted R² Score (both models)
+```
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Technology | Usage |
-|----------|------|
-| Python | Core language |
-| Pygame | Game development |
-| Random | Food positioning |
-| OOP Logic | Game flow |
+| Library         | Purpose                              |
+|-----------------|--------------------------------------|
+| `pandas`        | Data loading, manipulation, encoding |
+| `numpy`         | Numerical operations                 |
+| `seaborn`       | Statistical visualisations           |
+| `matplotlib`    | Plot rendering                       |
+| `plotly`        | Interactive dark-theme charts        |
+| `scikit-learn`  | Encoding, scaling, regression, metrics |
 
 ---
 
-## ▶️ How to Run Locally
+## 🚀 Getting Started
 
-### 1️⃣ Clone the repository
+### Prerequisites
+
 ```bash
-git clone https://github.com/YOUR-USERNAME/Snake-Game-Pygame.git
-cd Snake-Game-Pygame
+pip install pandas numpy seaborn matplotlib plotly scikit-learn
+```
 
+### Run Locally
 
+```bash
+git clone https://github.com/<your-username>/ford-dataset-analysis.git
+cd ford-dataset-analysis
+jupyter notebook ford-dataset-analysis.ipynb
+```
+
+> **Note:** Download `ford.csv` from [Kaggle](https://www.kaggle.com/datasets/adhurimquku/ford-car-price-prediction) and update the file path in the notebook's data-loading cell.
+
+---
+
+## 📈 Results
+
+| Encoding Strategy | R² Score | Adjusted R² |
+|-------------------|----------|-------------|
+| One-Hot Encoding  | —        | —           |
+| Label Encoding    | —        | —           |
+
+> *Fill in your actual metric values after running the notebook.*
+
+---
+
+## 💡 Key Learnings
+
+- One-Hot Encoding creates more columns but avoids imposing an artificial ordinal relationship on categorical variables like car model and fuel type.
+- Label Encoding is more memory-efficient but can mislead distance-based algorithms by implying an order where none exists.
+- StandardScaler is essential before linear regression when features have vastly different ranges (e.g., mileage in thousands vs engine size in single digits).
+- Adjusted R² penalises unnecessary features and gives a more honest measure of model fit than plain R².
+
+---
+
+## 👤 Author
+
+**Yash Brahmankar**
+B.Tech AI & ML | OIST (2024–2028)
+
+[![GitHub](https://img.shields.io/badge/GitHub-loisekk-181717?style=flat&logo=github)](https://github.com/loisekk)
+[![Email](https://img.shields.io/badge/Email-yashbrahmankar95@gmail.com-D14836?style=flat&logo=gmail&logoColor=white)](mailto:yashbrahmankar95@gmail.com)
+
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
